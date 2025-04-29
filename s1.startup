@@ -1,1 +1,2 @@
-e invece aveva ragione federico
+ip link set eth0 address 00:00:00:00:01:01
+ip addr add 20.0.0.1/16 dev eth0

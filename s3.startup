@@ -1,0 +1,2 @@
+ip link set eth0 address 00:00:00:00:02:01
+ip addr add 30.0.0.1/16 dev eth0
