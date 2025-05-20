@@ -13,23 +13,15 @@ class LoadBalancer(object):
         core.openflow.addListeners(self)
 
     def _handle_PacketIn(self, event):
-        """
-        Handles incoming packets and routes them based on the external algorithm.
-        """
+        
         packet = event.parsed
 
-        if not packet.parsed:
-            log.warning("Ignoring incomplete packet")
-            return
-
-        # Check if the packet is an IPv4 packet
         if packet.type == ethernet.IP_TYPE:
             ip_packet = packet.payload
 
             if isinstance(ip_packet, ipv4):
-                log.info(f"Packet received from {ip_packet.srcip} to {ip_packet.dstip}")
 
-                # Use the external algorithm to determine the next hop
+                # Define get_next_hop function later
                 next_hop = get_next_hop(str(ip_packet.srcip), str(ip_packet.dstip))
 
                 if next_hop:
@@ -59,8 +51,4 @@ class LoadBalancer(object):
         event.connection.send(msg)
 
 def launch():
-    """
-    Launches the POX controller.
-    """
-    log.info("Starting POX Load Balancer Controller")
     LoadBalancer()
