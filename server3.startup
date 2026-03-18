@@ -1,0 +1,8 @@
+ip link set eth0 address 00:00:00:00:02:01
+ip addr add 20.0.0.3/16 dev eth0
+ip route add default via 20.0.1.1 dev eth0
+
+
+
+
+python3 /shared/server.py
